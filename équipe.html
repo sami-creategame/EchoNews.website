@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EchoNews — Team</title>
+
+<style>
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #121212;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: color 0.3s; }
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #ff0040, #0066ff);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.2);
+}
+
+header h1 { font-size: 2.6em; margin-bottom: 10px; }
+header p { font-size: 1.2em; }
+
+/* --- NAVIGATION (Centrée + Recherche à droite) --- */
+nav {
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: center; /* Centre les liens */
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #333;
+    position: relative; /* Nécessaire pour le positionnement absolu de la recherche */
+}
+
+.nav-links a {
+    color: #f5f5f5;
+    padding: 12px 18px;
+    font-weight: bold;
+}
+
+.nav-links a:hover { color: #FF9800; }
+
+/* Search Bar - Position Absolute */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Sort du flux */
+    right: 20px; /* Collé à droite */
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    width: 200px;
+    transition: width 0.3s;
+}
+
+.search-bar input:focus {
+    width: 260px;
+    border-color: #FF9800;
+    outline: none;
+}
+
+.search-bar button {
+    background: #FF9800;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-bar button:hover { background: #4CAF50; }
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Team Grid Style */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.team-card {
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    padding: 30px 20px;
+    text-align: center;
+    transition: transform 0.3s;
+    border-top: 3px solid transparent; /* Pour éviter le saut au hover */
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    border-top: 3px solid #ff0040; /* Petit effet couleur au survol */
+}
+
+.team-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 3px solid #0066ff; /* Bordure bleue comme le thème */
+    padding: 3px; /* Espace entre image et bordure */
+}
+
+.team-card h2 {
+    font-size: 1.4em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.team-card p {
+    color: #aaa;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.role-highlight {
+    color: #FF9800;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #1f1f1f;
+    color: #bbb;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    nav { 
+        flex-direction: column; 
+        gap: 15px; 
+        padding-bottom: 20px;
+    }
+    .search-bar {
+        position: static; /* Reset absolute positioning on mobile */
+        width: 100%;
+        justify-content: center;
+    }
+    .search-bar input { width: 150px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Our Team</h1>
+    <p>The minds and voices behind EchoNews</p>
+</header>
+
+<nav>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="editoriaux.html">Editorials</a>
+        <a href="podcasts.html">Podcasts</a>
+        <a href="équipe.html">Team</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Find a member...">
+        <button id="searchButton">🔍</button>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="team-grid" id="teamContainer">
+        
+        <div class="team-card" data-name="jaber sami web designer">
+            <img src="https://picsum.photos/200?random=94" alt="JABER Sami">
+            <h2>JABER Sami</h2>
+            <p>
+                <span class="role-highlight">Web Designer</span>
+                Hello, I am JABER Sami, a Web Designer and writer.
+                I wrote an analytical article as well as an editorial about journalism and influencers.
+                I also designed and developed the entire website.
+                The project was built using HTML for content and text structure.
+                CSS was used for layout and styling, with JavaScript animations to create a dynamic user experience.
+            </p>
+        </div>
+
+        <div class="team-card" data-name="gain-brochet elliot video editor">
+            <img src="https://picsum.photos/200?random=91" alt="GAIN-BROCHET Elliot">
+            <h2>GAIN-BROCHET Elliot</h2>
+            <p>
+                <span class="role-highlight">About Page Editor</span>
+                I’m Elliot, and I manage the Mission & Philosophy of EchoNews.
+A website without a clear purpose is just code. I define who we are and where we are going. My goal is to turn casual visitors into a loyal community that believes in our vision of a balanced digital life.
+            </p>
+        </div>
+
+        <div class="team-card" data-name="mercier alexis language editor">
+            <img src="https://picsum.photos/200?random=92" alt="MERCIER Alexis">
+            <h2>MERCIER Alexis</h2>
+            <p>
+                <span class="role-highlight">Language & Content Editor</span>
+                Hello, I’m Alexis, the Language & Content Editor.
+                In a world full of fake news and clickbait, credibility is our most valuable asset. My role is to ensure that every piece of content we publish is not only accurate but also clear and impactful. I make sure our ‘voice’ remains consistent, professional, and trustworthy for our investors and readers
+            </p>
+        </div>
+
+        <div class="team-card" data-name="odinn baptiste about page">
+            <img src="https://picsum.photos/200?random=93" alt="ODINN Baptiste">
+            <h2>ODINN Baptiste</h2>
+            <p>
+                <span class="role-highlight">Video Editor</span>
+                Hi, I’m Baptiste , the Video Editor.
+            We know that students prefer watching videos over reading long texts. So, I edited our video to make the news dynamic and interesting to watch.
+
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Society & Culture | contact@societyculture.fr</p>
+</footer>
+
+<script>
+document.getElementById("searchButton").addEventListener("click", function () {
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll(".team-card");
+
+    cards.forEach(card => {
+        const nameData = card.getAttribute("data-name");
+        card.style.display = nameData.includes(searchTerm) ? "block" : "none";
+    });
+});
+
+document.getElementById("searchInput").addEventListener("keyup", function (e) {
+    if (e.key === "Enter") {
+        document.getElementById("searchButton").click();
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EchoNews — Editorials</title>
+
+<style>
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #121212;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: color 0.3s; }
+
+/* Header — EDITORIAL COLOR */
+header {
+    background: linear-gradient(90deg, #ff0040, #0066ff);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.2);
+}
+
+header h1 { font-size: 2.6em; margin-bottom: 10px; }
+header p { font-size: 1.2em; }
+
+/* --- MODIFIED NAVIGATION --- */
+nav {
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: center; /* Centers the links */
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #333;
+    position: relative; /* Necessary for absolute positioning of search */
+}
+
+.nav-links a {
+    color: #f5f5f5;
+    padding: 12px 18px;
+    font-weight: bold;
+}
+
+.nav-links a:hover { color: #FF9800; }
+
+/* Search Bar - Positioned Absolute */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Takes it out of the flow */
+    right: 20px; /* Sticks it to the right edge */
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    width: 200px;
+    transition: width 0.3s;
+}
+
+.search-bar input:focus {
+    width: 260px;
+    border-color: #FF9800;
+    outline: none;
+}
+
+.search-bar button {
+    background: #FF9800;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-bar button:hover { background: #4CAF50; }
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Editorial cards */
+.editorial-card {
+    background: #1f1f1f;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    overflow: hidden;
+    border-left: 6px solid #ff0040;
+    transition: transform 0.3s;
+}
+
+.editorial-card:hover {
+    transform: translateY(-5px);
+}
+
+.editorial-card-content {
+    padding: 20px;
+}
+
+.editorial-label {
+    display: inline-block;
+    background: #ff0040;
+    color: #fff;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    margin-bottom: 10px;
+}
+
+.editorial-card-content h2 a {
+    color: #4CAF50;
+}
+
+.editorial-card-content h2 a:hover {
+    color: #FF9800;
+}
+
+.author {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #1f1f1f;
+    color: #bbb;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    nav { 
+        flex-direction: column; 
+        gap: 15px; 
+        padding-bottom: 20px;
+    }
+    .search-bar {
+        position: static; /* Reset absolute positioning on mobile */
+        width: 100%;
+        justify-content: center;
+    }
+    .search-bar input { width: 150px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Editorials</h1>
+    <p>The official voice and opinions of the EchoNews editorial team</p>
+</header>
+
+<nav>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="editoriaux.html">Editorials</a>
+        <a href="podcasts.html">Podcasts</a>
+        <a href="équipe.html">Team</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search editorials...">
+        <button id="searchButton">🔍</button>
+    </div>
+</nav>
+
+<div class="container" id="editorialContainer">
+
+    <div class="editorial-card" data-title="information human journalism">
+        <div class="editorial-card-content">
+            <span class="editorial-label">EDITORIAL</span>
+            <p class="author">Written by MERCIER Alexis, On January 3, 2026</p>
+            <h2><a href="editorial1.html">The Paradox of Connectivity</a></h2>
+            <p>In the article, I mentioned the alarming statistics regarding our smartphone usage and rising loneliness. However, numbers only tell half the story.</p>
+        </div>
+    </div>
+
+    <div class="editorial-card" data-title="social media connection loneliness">
+        <div class="editorial-card-content">
+            <span class="editorial-label">EDITORIAL</span>
+            <p class="author">Written by JABER Sami, On  January 3, 2026</p>
+            <h2><a href="editorial2.html">Influencers Aren’t Replacing Journalism</a></h2>
+            <p>In the age of social media, TikTok, Instagram, and YouTube are no longer just entertainment platforms—they have become full-fledged information channels.</p>
+        </div>
+    </div>
+
+    <div class="editorial-card" data-title="algorithms journalism democracy">
+        <div class="editorial-card-content">
+            <span class="editorial-label">EDITORIAL</span>
+            <p class="author">Written by ODIN Baptiste, On January 3, 2026</p>
+            <h2><a href="editorial3.html">The Future of Work in the Age of Automation</a></h2>
+            <p>Automation is changing the world of work faster than ever. Robots and machines are now able to do tasks that were once done only by humans.</p>
+        </div>
+    </div>
+
+    <div class="editorial-card" data-title="screens digital minimalism">
+        <div class="editorial-card-content">
+            <span class="editorial-label">EDITORIAL</span>
+            <p class="author">Written by GAIN-BROCHET Elliot, On January 3, 2026</p>
+            <h2><a href="editorial4.html">Living in a Hyperconnected World</a></h2>
+            <p>Today, technology is everywhere in our daily lives. We use our phones, social networks and digital tools all the time, at school, at work and even in our personal relationships.</p>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p><center>© 2026 EchoNews — Editorials</center></p>

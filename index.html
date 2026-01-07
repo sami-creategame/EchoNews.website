@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EchoNews — Understanding the world through connection and culture.</title>
+<style>
+    /* Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+        font-family: 'Segoe UI', Arial, sans-serif; 
+        background-color: #121212; 
+        color: #f5f5f5; 
+        line-height: 1.6; 
+    }
+    a { text-decoration: none; color: inherit; transition: color 0.3s; }
+
+    /* Header */
+    header {
+        background: linear-gradient(90deg, #ff0040, #0066ff);
+        color: #fff;
+        text-align: center;
+        padding: 40px 20px;
+        box-shadow: 0 2px 8px rgba(255,255,255,0.2);
+    }
+    header h1 { font-size: 2.8em; margin-bottom: 10px; letter-spacing: 1px; animation: fadeInDown 1s ease-in-out; }
+    header h2 { font-size: 2.0em; margin-bottom: 10px; letter-spacing: 1px; animation: fadeInDown 1s ease-in-out; }
+    header p { font-size: 1.2em; animation: fadeInUp 1s ease-in-out; }
+
+    /* Navigation */
+    nav { 
+        background-color: #1f1f1f; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        padding: 10px 20px; 
+        border-bottom: 1px solid #333;
+        position: relative; 
+    }
+    
+    .nav-links a { 
+        color: #f5f5f5; 
+        padding: 12px 18px; 
+        display: inline-block; 
+        font-weight: bold;
+    }
+    .nav-links a:hover { color: #FF9800; }
+
+    /* Search Bar */
+    .search-bar { 
+        display: flex; 
+        align-items: center; 
+        position: absolute; 
+        right: 20px; 
+    }
+    
+    .search-bar input[type="text"] {
+        padding: 8px 12px;
+        border-radius: 20px;
+        border: 1px solid #444;
+        outline: none;
+        width: 200px;
+        background-color: #222;
+        color: #f5f5f5;
+        transition: width 0.3s;
+    }
+    .search-bar input[type="text"]:focus {
+        width: 260px;
+        border-color: #FF9800;
+    }
+    .search-bar button {
+        background-color: #FF9800;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        margin-left: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-size: 16px;
+    }
+    .search-bar button:hover {
+        background-color: #4CAF50;
+    }
+
+    /* Layout */
+    .container { 
+        display: flex; 
+        max-width: 1200px; 
+        margin: 30px auto; 
+        padding: 0 20px; 
+        gap: 25px; 
+        flex-wrap: wrap; 
+    }
+    .main { flex: 3; }
+    .sidebar { 
+        flex: 1; 
+        background-color: #1f1f1f; 
+        padding: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 2px 8px rgba(0,0,0,0.4); 
+        height: fit-content;
+        animation: fadeIn 1.2s ease;
+    }
+
+    /* Articles Cards */
+    .article-card { 
+        background-color: #1f1f1f; 
+        margin-bottom: 25px; 
+        border-radius: 12px; 
+        box-shadow: 0 3px 8px rgba(0,0,0,0.4); 
+        overflow: hidden; 
+        transform: translateY(30px);
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+        position: relative; /* Useful for positioning if needed */
+    }
+    .article-card:nth-child(2) { animation-delay: 0.2s; }
+    .article-card:nth-child(3) { animation-delay: 0.4s; }
+    .article-card:nth-child(4) { animation-delay: 0.6s; }
+
+    .article-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 6px 15px rgba(0,0,0,0.6); 
+    }
+    .article-card img { width: 100%; height: 200px; object-fit: cover; }
+    .article-card-content { padding: 18px; }
+    .article-card-content h2 a { color: #4CAF50; }
+    .article-card-content h2 a:hover { color: #FF9800; }
+    .author { font-style: italic; font-size: 0.9em; color: #aaa; margin-bottom: 10px; }
+
+    /* --- NEW CSS FOR LABELS --- */
+    .tag-editorial {
+        display: inline-block;
+        background-color: #ff0040; /* Red color from your image/header */
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+    }
+
+    /* Sidebar */
+    .sidebar h3 { margin-bottom: 15px; color: #FF9800; font-size: 1.2em; border-bottom: 2px solid #FF9800; padding-bottom: 5px; }
+    .sidebar a { display: block; padding: 8px 0; color: #ddd; border-bottom: 1px solid #333; }
+    .sidebar a:hover { color: #4CAF50; }
+
+    /* Footer */
+    footer { 
+        background-color: #1f1f1f; 
+        color: #bbb; 
+        text-align: center; 
+        padding: 25px 0; 
+        margin-top: 50px; 
+    }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+        .container { flex-direction: column; }
+        nav { flex-direction: column; gap: 15px; padding-bottom: 20px; }
+        .search-bar { position: static; width: 100%; justify-content: center; }
+        .search-bar input[type="text"] { width: 80%; }
+        .nav-links { display: flex; flex-direction: column; text-align: center; width: 100%; }
+        .nav-links a { display: block; padding: 10px; border-bottom: 1px solid #333; }
+    }
+    
+</style>
+</head>
+<body>
+
+<header>
+    <h1>EchoNews</h1>
+    <h3>Understanding the world through connection and culture</h3>
+   
+</header>
+
+<nav>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="editoriaux.html">Editorials</a>
+        <a href="podcasts.html">Podcasts</a>
+        <a href="équipe.html">Team</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search articles...">
+        <button id="searchButton">🔍</button>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="main" id="articleContainer">
+        
+        <div class="article-card" data-title="connection isolation">
+            <img src="ado.jpeg" alt="Connected or isolated">
+            <div class="article-card-content">
+                <p class="author">Written by MERCIER Alexis, On October 26, 2025</p>
+                <h2><a href="article1.html">Are We the Most Connected or the Most Isolated Generation?</a></h2>
+                <p>In the digital era, young people spend countless hours on social media, raising the question of real social isolation.</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="influencers journalism">
+            <img src="Journalists-vs-Influencers.webp" alt="Influencers and journalism">
+            <div class="article-card-content">
+                <p class="author">Written by JABER Sami, On October 25, 2025</p>
+                <h2><a href="article2.html">Are Influencers Replacing Journalists?</a></h2>
+                <p>Influencers spread information quickly, but can they really replace reliable, investigative journalism?</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="future work automation">
+            <img src="REFLE.png" alt="Future of work">
+            <div class="article-card-content">
+                <p class="author">Written by ODIN Baptiste, On October 28, 2025</p>
+                <h2><a href="article3.html">The Future of Work in the Age of Automation</a></h2>
+                <p>Automation is reshaping the professional world, requiring new skills and adaptability for rapid change.</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="digital minimalism screens">
+            <img src="photoart22.jpeg" alt="Digital minimalism">
+            <div class="article-card-content">
+                <p class="author">Written by GAIN-BROCHET Elliot, On October 29, 2025</p>
+                <h2><a href="article4.html">Digital Minimalism: Living Better with Less Screen Time</a></h2>
+                <p>Millions are embracing digital minimalism — a lifestyle focused on intentional, mindful technology use.</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="connection isolation">
+            <div class="article-card-content">
+                <span class="tag-editorial">EDITORIAL</span>
+                <p class="author">Written by MERCIER Alexis, On January 3, 2026</p>
+                <h2><a href="editorial1.html">The Paradox of Connectivity</a></h2>
+                <p>In the article, I mentioned the alarming statistics regarding our smartphone usage and rising loneliness.</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="influencers journalism">
+            <div class="article-card-content">
+                <span class="tag-editorial">EDITORIAL</span>
+                <p class="author">Written by JABER Sami, On  January 3, 2026</p>
+                <h2><a href="editorial2.html">Influencers Aren’t Replacing Journalism</a></h2>
+                <p>In the age of social media, TikTok, Instagram, and YouTube are no longer just entertainment platforms—they have become full-fledged information channels.</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="future work automation">
+            <div class="article-card-content">
+                <span class="tag-editorial">EDITORIAL</span>
+                <p class="author">Written by ODIN Baptiste, On January 3, 2026</p>
+                <h2><a href="editorial3.html">The Future of Work in the Age of Automation</a></h2>
+                <p>Automation is changing the world of work faster than ever. Robots and machines are now able to do tasks that were once done only by humans.</p>
+            </div>
+        </div>
+
+        <div class="article-card" data-title="digital minimalism screens">
+            <div class="article-card-content">
+                <span class="tag-editorial">EDITORIAL</span>
+                <p class="author">Written by GAIN-BROCHET Elliot, On October 29, 2025</p>
+                <h2><a href="editorial4.html">Living in a Hyperconnected World</a></h2>
+                <p>Today, technology is everywhere in our daily lives. We use our phones, social networks and digital tools all the time, at school, at work and even in our personal relationships. </p>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="sidebar">
+        <h3>Recent Articles</h3>
+        <a href="article1.html">Connection & Isolation</a>
+        <a href="article2.html">Influencers & Journalism</a>
+        <a href="article3.html">Future of Work</a>
+        <a href="article4.html">Digital Minimalism</a>
+
+        <h3>Recent Editorials</h3>
+        <a href="editorial1.html">Why Information Must Remain Human</a>
+        <a href="editorial2.html">Social Media: A False Promise of Connection</a>
+        <a href="editorial3.html">Journalism Cannot Be Replaced by Algorithms</a>
+        <a href="editorial4.html">Living in a Hyperconnected World</a>
+
+        <h3>Recent Podcasts</h3>
+        <a href="podcast1.html">Podcast #1 — The Year of the Shift</a>
+
+
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Society & Culture | contact@societyculture.fr</p>
+</footer>
+
+<script>
+document.getElementById("searchButton").addEventListener("click", function() {
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    const articles = document.querySelectorAll(".article-card");
+
+    articles.forEach(article => {
+        const title = article.getAttribute("data-title");
+        if (title.includes(searchTerm)) {
+            article.style.display = "block";
+        } else {
+            article.style.display = "none";
+        }
+    });
+});
+
+document.getElementById("searchInput").addEventListener("keyup", function(e) {
+    if (e.key === "Enter") {
+        document.getElementById("searchButton").click();
+    }
+});
+</script>
+
+</body>
+</html>
